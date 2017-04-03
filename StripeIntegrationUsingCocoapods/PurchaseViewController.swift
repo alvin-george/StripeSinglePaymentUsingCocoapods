@@ -39,8 +39,6 @@ class PurchaseViewController: UIViewController, STPPaymentContextDelegate,STPPay
        // buyButton.isHidden = true;
         
         
-        
-        
         if productPriceInfo != nil{
             productPrice.setTitle("$ "+self.productPriceInfo , for: UIControlState.normal)
         }
@@ -56,8 +54,6 @@ class PurchaseViewController: UIViewController, STPPaymentContextDelegate,STPPay
     
     @IBAction func buynowButtonClicked(_ sender: Any) {
         // Initiate the card
-        // self.paymentContext.requestPayment()
-        
         let card = paymentTextField.cardParams
         
         STPAPIClient.shared().createToken(withCard: card, completion: {(token, error) -> Void in
@@ -73,7 +69,9 @@ class PurchaseViewController: UIViewController, STPPaymentContextDelegate,STPPay
     }
     func chargeUsingToken(token:STPToken) {
         
-        let requestString = "https://thawing-inlet-46474.herokuapp.com/charge.php"
+        print(token.tokenId)
+        
+        let requestString = "https://sample-payment-app.herokuapp.com"
         let params = ["stripeToken": token.tokenId, "amount": "200", "currency": "usd", "description": "testRun"]
         
         

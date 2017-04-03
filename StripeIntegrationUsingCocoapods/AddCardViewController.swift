@@ -7,14 +7,51 @@
 //
 
 import UIKit
+import Stripe
 
-class AddCardViewController: UIViewController {
+class AddCardViewController: UIViewController, UITextFieldDelegate,STPPaymentCardTextFieldDelegate {
 
+    @IBOutlet var emailTextField: UITextField!
+    @IBOutlet var cardnumberTextField: UITextField!
+    
+    @IBOutlet var saveforUserSwitch: UISwitch!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
+        let paymentTextField = STPPaymentCardTextField()
+        paymentTextField.delegate = self
+        cardnumberTextField.delegate = paymentTextField.delegate as! UITextFieldDelegate?
+        
     }
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+    }
+    func textFieldDidEndEditing(_ textField: UITextField) {
+    }
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        return true;
+    }
+    func textFieldShouldClear(_ textField: UITextField) -> Bool {
+        return true;
+    }
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        return true;
+    }
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        return true;
+    }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder();
+        return true;
+    }
+    
+    func paymentCardTextFieldDidChange(_ textField: STPPaymentCardTextField) {
+     
+    }
+    @IBAction func saveforUseSwitchValueChanged(_ sender: Any) {
+        
+    }
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
