@@ -7,14 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3D2439C0650E2CBF5CA7AB3C /* Pods_StripeIntegrationUsingCocoapods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F38DF5EB39FAA3EBABE56B44 /* Pods_StripeIntegrationUsingCocoapods.framework */; };
 		825E617D1E9246960056BFD2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825E617C1E9246960056BFD2 /* AppDelegate.swift */; };
 		825E617F1E9246960056BFD2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825E617E1E9246960056BFD2 /* ViewController.swift */; };
 		825E61821E9246960056BFD2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 825E61801E9246960056BFD2 /* Main.storyboard */; };
 		825E61841E9246960056BFD2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 825E61831E9246960056BFD2 /* Assets.xcassets */; };
 		825E61871E9246960056BFD2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 825E61851E9246960056BFD2 /* LaunchScreen.storyboard */; };
+		825E618F1E9249170056BFD2 /* ProductListTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825E618E1E9249170056BFD2 /* ProductListTableCell.swift */; };
+		825E61911E924FE60056BFD2 /* PurchaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825E61901E924FE60056BFD2 /* PurchaseViewController.swift */; };
+		825E61931E925DDF0056BFD2 /* AddCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825E61921E925DDF0056BFD2 /* AddCardViewController.swift */; };
+		825E61951E925E500056BFD2 /* ShippingInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825E61941E925E500056BFD2 /* ShippingInfoViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		625625565249F3F88A1903E9 /* Pods-StripeIntegrationUsingCocoapods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StripeIntegrationUsingCocoapods.release.xcconfig"; path = "Pods/Target Support Files/Pods-StripeIntegrationUsingCocoapods/Pods-StripeIntegrationUsingCocoapods.release.xcconfig"; sourceTree = "<group>"; };
+		686BAE162B47CE846AADFF27 /* Pods-StripeIntegrationUsingCocoapods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-StripeIntegrationUsingCocoapods.debug.xcconfig"; path = "Pods/Target Support Files/Pods-StripeIntegrationUsingCocoapods/Pods-StripeIntegrationUsingCocoapods.debug.xcconfig"; sourceTree = "<group>"; };
 		825E61791E9246960056BFD2 /* StripeIntegrationUsingCocoapods.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StripeIntegrationUsingCocoapods.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		825E617C1E9246960056BFD2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		825E617E1E9246960056BFD2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +29,11 @@
 		825E61831E9246960056BFD2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		825E61861E9246960056BFD2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		825E61881E9246960056BFD2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		825E618E1E9249170056BFD2 /* ProductListTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductListTableCell.swift; sourceTree = "<group>"; };
+		825E61901E924FE60056BFD2 /* PurchaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PurchaseViewController.swift; sourceTree = "<group>"; };
+		825E61921E925DDF0056BFD2 /* AddCardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCardViewController.swift; sourceTree = "<group>"; };
+		825E61941E925E500056BFD2 /* ShippingInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShippingInfoViewController.swift; sourceTree = "<group>"; };
+		F38DF5EB39FAA3EBABE56B44 /* Pods_StripeIntegrationUsingCocoapods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StripeIntegrationUsingCocoapods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +41,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D2439C0650E2CBF5CA7AB3C /* Pods_StripeIntegrationUsingCocoapods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +53,8 @@
 			children = (
 				825E617B1E9246960056BFD2 /* StripeIntegrationUsingCocoapods */,
 				825E617A1E9246960056BFD2 /* Products */,
+				CBB1A1F8B35260D6DDEBF62F /* Pods */,
+				DFC941315C290E107EE340C6 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -60,8 +75,29 @@
 				825E61831E9246960056BFD2 /* Assets.xcassets */,
 				825E61851E9246960056BFD2 /* LaunchScreen.storyboard */,
 				825E61881E9246960056BFD2 /* Info.plist */,
+				825E618E1E9249170056BFD2 /* ProductListTableCell.swift */,
+				825E61901E924FE60056BFD2 /* PurchaseViewController.swift */,
+				825E61921E925DDF0056BFD2 /* AddCardViewController.swift */,
+				825E61941E925E500056BFD2 /* ShippingInfoViewController.swift */,
 			);
 			path = StripeIntegrationUsingCocoapods;
+			sourceTree = "<group>";
+		};
+		CBB1A1F8B35260D6DDEBF62F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				686BAE162B47CE846AADFF27 /* Pods-StripeIntegrationUsingCocoapods.debug.xcconfig */,
+				625625565249F3F88A1903E9 /* Pods-StripeIntegrationUsingCocoapods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		DFC941315C290E107EE340C6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F38DF5EB39FAA3EBABE56B44 /* Pods_StripeIntegrationUsingCocoapods.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -71,9 +107,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 825E618B1E9246960056BFD2 /* Build configuration list for PBXNativeTarget "StripeIntegrationUsingCocoapods" */;
 			buildPhases = (
+				DE74FF2794CAA6D5DDC1B998 /* [CP] Check Pods Manifest.lock */,
 				825E61751E9246960056BFD2 /* Sources */,
 				825E61761E9246960056BFD2 /* Frameworks */,
 				825E61771E9246960056BFD2 /* Resources */,
+				38AC9B93DCD1D3B63C35BE83 /* [CP] Embed Pods Frameworks */,
+				AB566A4093FBAEAB7806CF49 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -131,13 +170,65 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		38AC9B93DCD1D3B63C35BE83 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-StripeIntegrationUsingCocoapods/Pods-StripeIntegrationUsingCocoapods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AB566A4093FBAEAB7806CF49 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-StripeIntegrationUsingCocoapods/Pods-StripeIntegrationUsingCocoapods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DE74FF2794CAA6D5DDC1B998 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		825E61751E9246960056BFD2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				825E618F1E9249170056BFD2 /* ProductListTableCell.swift in Sources */,
+				825E61911E924FE60056BFD2 /* PurchaseViewController.swift in Sources */,
 				825E617F1E9246960056BFD2 /* ViewController.swift in Sources */,
 				825E617D1E9246960056BFD2 /* AppDelegate.swift in Sources */,
+				825E61951E925E500056BFD2 /* ShippingInfoViewController.swift in Sources */,
+				825E61931E925DDF0056BFD2 /* AddCardViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -256,6 +347,7 @@
 		};
 		825E618C1E9246960056BFD2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 686BAE162B47CE846AADFF27 /* Pods-StripeIntegrationUsingCocoapods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = StripeIntegrationUsingCocoapods/Info.plist;
@@ -268,6 +360,7 @@
 		};
 		825E618D1E9246960056BFD2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 625625565249F3F88A1903E9 /* Pods-StripeIntegrationUsingCocoapods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = StripeIntegrationUsingCocoapods/Info.plist;
@@ -297,6 +390,7 @@
 				825E618D1E9246960056BFD2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
