@@ -17,6 +17,7 @@
 		825E61911E924FE60056BFD2 /* PurchaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825E61901E924FE60056BFD2 /* PurchaseViewController.swift */; };
 		825E61931E925DDF0056BFD2 /* AddCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825E61921E925DDF0056BFD2 /* AddCardViewController.swift */; };
 		825E61951E925E500056BFD2 /* ShippingInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825E61941E925E500056BFD2 /* ShippingInfoViewController.swift */; };
+		8277C8711E93AD680057710B /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8277C8701E93AD680057710B /* HelpViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 		825E61901E924FE60056BFD2 /* PurchaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PurchaseViewController.swift; sourceTree = "<group>"; };
 		825E61921E925DDF0056BFD2 /* AddCardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCardViewController.swift; sourceTree = "<group>"; };
 		825E61941E925E500056BFD2 /* ShippingInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShippingInfoViewController.swift; sourceTree = "<group>"; };
+		8277C8701E93AD680057710B /* HelpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
 		F38DF5EB39FAA3EBABE56B44 /* Pods_StripeIntegrationUsingCocoapods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_StripeIntegrationUsingCocoapods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -79,6 +81,7 @@
 				825E61901E924FE60056BFD2 /* PurchaseViewController.swift */,
 				825E61921E925DDF0056BFD2 /* AddCardViewController.swift */,
 				825E61941E925E500056BFD2 /* ShippingInfoViewController.swift */,
+				8277C8701E93AD680057710B /* HelpViewController.swift */,
 			);
 			path = StripeIntegrationUsingCocoapods;
 			sourceTree = "<group>";
@@ -223,6 +226,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8277C8711E93AD680057710B /* HelpViewController.swift in Sources */,
 				825E618F1E9249170056BFD2 /* ProductListTableCell.swift in Sources */,
 				825E61911E924FE60056BFD2 /* PurchaseViewController.swift in Sources */,
 				825E617F1E9246960056BFD2 /* ViewController.swift in Sources */,

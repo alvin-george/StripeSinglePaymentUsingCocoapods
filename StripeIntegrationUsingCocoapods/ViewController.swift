@@ -17,7 +17,6 @@ class ViewController: UIViewController, UITableViewDelegate,UITableViewDataSourc
     var selectedProduct:String?
     var selectedProductPrice:Int!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.isNavigationBarHidden =  true
@@ -58,9 +57,17 @@ class ViewController: UIViewController, UITableViewDelegate,UITableViewDataSourc
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        let destinationVC = segue.destination as! PurchaseViewController
+        if let destinationVC = segue.destination as? PurchaseViewController {
         destinationVC.productImageName =  selectedProduct
         destinationVC.productPriceInfo = String(describing: selectedProductPrice)
+        }
+        else{
+            
+        }
+    }
+    @IBAction func getHelpButtonClicked(_ sender: Any) {
+        
+        self.performSegue(withIdentifier: "segueToHelpViewController", sender: self)
     }
     
     override func didReceiveMemoryWarning() {

@@ -189,6 +189,9 @@ class PurchaseViewController: UIViewController, STPPaymentContextDelegate,STPPay
         self.shippingDetailsDict =  shippingDetails
     }
     
+    @IBAction func backButtonClicked(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
