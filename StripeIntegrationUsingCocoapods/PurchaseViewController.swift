@@ -7,10 +7,11 @@
 //
 
 import UIKit
+import Foundation
 import Stripe
 import Alamofire
 
-class PurchaseViewController: UIViewController, STPPaymentContextDelegate,STPPaymentCardTextFieldDelegate {
+class PurchaseViewController: UIViewController, STPPaymentContextDelegate,STPPaymentCardTextFieldDelegate, CardDetailsDelegate, ShippingDetailsDelegate {
     
     
     @IBOutlet var productImage: UIImageView!
@@ -27,6 +28,9 @@ class PurchaseViewController: UIViewController, STPPaymentContextDelegate,STPPay
     
     // let paymentContext: STPPaymentContext
     
+    var cardDetailsDict = [Dictionary<String,String>]()
+    var shippingDetailsDict = [Dictionary<String,String>]()
+    
     
     let paymentTextField = STPPaymentCardTextField()
     
@@ -35,11 +39,11 @@ class PurchaseViewController: UIViewController, STPPaymentContextDelegate,STPPay
         
         paymentTextField.frame =  CGRect(x: 15,y: 199 ,width: self.view.frame.size.width-30,height: 44)
         paymentTextField.delegate = self
-        view.addSubview(paymentTextField)
-       // buyButton.isHidden = true;
+        //view.addSubview(paymentTextField)
+        // buyButton.isHidden = true;
         
         
-        if productPriceInfo != nil{
+        if productPriceInfo != nil {
             productPrice.setTitle("$ "+self.productPriceInfo , for: UIControlState.normal)
         }
         
@@ -48,24 +52,55 @@ class PurchaseViewController: UIViewController, STPPaymentContextDelegate,STPPay
         
         
     }
+    override func viewWillAppear(_ animated: Bool) {
+        
+    }
     @IBAction func selectPaymentButtonClicked(_ sender: Any) {
         self.performSegue(withIdentifier: "segueToAddCardViewController", sender: self)
     }
+    @IBAction func shippingAddressButtonClicked(_ sender: Any) {
+        
+        self.performSegue(withIdentifier: "segueToShippingInfoViewController", sender: self)
+    }
     
     @IBAction func buynowButtonClicked(_ sender: Any) {
-        // Initiate the card
-        let card = paymentTextField.cardParams
         
-        STPAPIClient.shared().createToken(withCard: card, completion: {(token, error) -> Void in
-            if let error = error {
-                print(error)
-            }
-            else if let token = token {
-                print(token)
-                self.chargeUsingToken(token: token)
-            }
-        })
         
+        if (shippingDetailsDict.isEmpty) {
+            
+            showAlert(title: "Ooops!", messsage: "Please add shipping information")
+            
+        }
+        else if (cardDetailsDict.isEmpty){
+            showAlert(title: "Oops!", messsage: "Please add card information")
+        }
+        else if (shippingDetailsDict.count != nil && cardDetailsDict != nil){
+            
+            // Initiate the card
+            let card = paymentTextField.cardParams
+            
+            STPAPIClient.shared().createToken(withCard: card, completion: {(token, error) -> Void in
+                if let error = error {
+                    print(error)
+                }
+                else if let token = token {
+                    print(token)
+                    self.chargeUsingToken(token: token)
+                }
+            })
+            
+        }
+        else{
+            
+        }
+        
+        
+    }
+    func showAlert (title:String, messsage:String){
+        
+        let alert = UIAlertController(title: title, message: messsage, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
     func chargeUsingToken(token:STPToken) {
         
@@ -102,6 +137,9 @@ class PurchaseViewController: UIViewController, STPPaymentContextDelegate,STPPay
     }
     
     
+    
+    
+    
     func paymentContext(_ paymentContext: STPPaymentContext, didCreatePaymentResult paymentResult: STPPaymentResult, completion: @escaping STPErrorBlock) {
     }
     
@@ -119,6 +157,30 @@ class PurchaseViewController: UIViewController, STPPaymentContextDelegate,STPPay
         
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        //set delegate of AddcardVC here
+        if let viewController = segue.destination as? AddCardViewController {
+            viewController.delegate = self
+        }
+        else  if let viewController = segue.destination as? ShippingInfoViewController {
+            viewController.shipping_delegate = self
+        }
+        else {
+            
+        }
+    }
+    //CardDetails Delegate
+    func getUserCardDetails(cardDetails: [Dictionary<String, String>]) {
+        print("cardDetails : \(cardDetails)")
+        self.cardDetailsDict = cardDetails
+    }
+    
+    //ShippingDetails Delegate
+    func getUserShippingDetails(shippingDetails: [Dictionary<String, String>]) {
+        print("shippingDetails : \(shippingDetails)")
+        self.shippingDetailsDict =  shippingDetails
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

@@ -14,13 +14,14 @@ class ViewController: UIViewController, UITableViewDelegate,UITableViewDataSourc
     @IBOutlet var productListTableView: UITableView!
     
     var productAndPrices: [String:Int] = [:]
-    
     var selectedProduct:String?
     var selectedProductPrice:Int!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.isNavigationBarHidden =  true
+        
         
         productAndPrices = ["👕": 2000,"👖": 4000, "👗": 3000, "👞": 700, "👟": 600,"👠": 1000,"👡": 2000,"👢": 2500,"👒": 800,"👙": 3000,"💄": 2000,"🎩": 5000,"👛": 5500, "👜": 6000, "🕶": 2000,"👚": 2500]
     }
@@ -58,7 +59,7 @@ class ViewController: UIViewController, UITableViewDelegate,UITableViewDataSourc
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         let destinationVC = segue.destination as! PurchaseViewController
-        destinationVC.productImageName =  selectedProduct        
+        destinationVC.productImageName =  selectedProduct
         destinationVC.productPriceInfo = String(describing: selectedProductPrice)
     }
     
@@ -66,7 +67,6 @@ class ViewController: UIViewController, UITableViewDelegate,UITableViewDataSourc
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
     
     
 }
