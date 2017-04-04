@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
-        Stripe.setDefaultPublishableKey("pk_test_randomcharactersfromyourstripeaccount")
+        Stripe.setDefaultPublishableKey("pk_test_Leq79U3DlM2aDJ5GqkrCANWM")
         
         return true
     }

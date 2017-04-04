@@ -28,8 +28,8 @@ class PurchaseViewController: UIViewController, STPPaymentContextDelegate,STPPay
     
     // let paymentContext: STPPaymentContext
     
-    var cardDetailsDict = [Dictionary<String,String>]()
-    var shippingDetailsDict = [Dictionary<String,String>]()
+    var cardDetailsDict = [String : String]()
+    var shippingDetailsDict = [String : String]()
     
     
     let paymentTextField = STPPaymentCardTextField()
@@ -56,6 +56,7 @@ class PurchaseViewController: UIViewController, STPPaymentContextDelegate,STPPay
         
     }
     @IBAction func selectPaymentButtonClicked(_ sender: Any) {
+        
         self.performSegue(withIdentifier: "segueToAddCardViewController", sender: self)
     }
     @IBAction func shippingAddressButtonClicked(_ sender: Any) {
@@ -65,35 +66,42 @@ class PurchaseViewController: UIViewController, STPPaymentContextDelegate,STPPay
     
     @IBAction func buynowButtonClicked(_ sender: Any) {
         
-        
-        if (shippingDetailsDict.isEmpty) {
-            
-            showAlert(title: "Ooops!", messsage: "Please add shipping information")
-            
+        if (cardDetailsDict.isEmpty || shippingDetailsDict.isEmpty)
+        {
+            self.showAlert(title: "Oops!", messsage: "Please add card and shipping information")
         }
-        else if (cardDetailsDict.isEmpty){
-            showAlert(title: "Oops!", messsage: "Please add card information")
-        }
-        else if (shippingDetailsDict.count != nil && cardDetailsDict != nil){
+        else{
             
-            // Initiate the card
-            let card = paymentTextField.cardParams
+            let card_number = cardDetailsDict["card_number"]! as String
+            let expiry_date = cardDetailsDict["month_year"]! as String
+            let card_cvc = cardDetailsDict["cvc"]! as String
             
-            STPAPIClient.shared().createToken(withCard: card, completion: {(token, error) -> Void in
+            let stripCard = STPCard()
+            
+            // Split the expiration date to extract Month & Year
+            let expMonth = UInt(expiry_date.substring(from: expiry_date.index(expiry_date.startIndex, offsetBy: +2)))
+            let expYear = UInt(expiry_date.substring(from: expiry_date.index(expiry_date.endIndex, offsetBy: -2)))
+            
+            // Send the card info to Strip to get the token
+            stripCard.number = card_number
+            stripCard.cvc = card_cvc
+            stripCard.expMonth = expMonth!
+            stripCard.expYear = expYear!
+            
+            
+            //Validate and send to Stripe Backend and get Token
+            STPAPIClient.shared().createToken(withCard: stripCard, completion: {(token, error) -> Void in
                 if let error = error {
-                    print(error)
+                    print("toke registartion failed : \(error)")
+                    
+                    UIAlertView(title: "Please Try Again",message: error.localizedDescription, delegate: nil, cancelButtonTitle: "OK").show()
                 }
                 else if let token = token {
                     print(token)
                     self.chargeUsingToken(token: token)
                 }
             })
-            
         }
-        else{
-            
-        }
-        
         
     }
     func showAlert (title:String, messsage:String){
@@ -127,8 +135,6 @@ class PurchaseViewController: UIViewController, STPPaymentContextDelegate,STPPay
         }
         
     }
-    
-    
     func paymentCardTextFieldDidChange(_ textField: STPPaymentCardTextField) {
         
         if textField.valid {
@@ -171,13 +177,14 @@ class PurchaseViewController: UIViewController, STPPaymentContextDelegate,STPPay
         }
     }
     //CardDetails Delegate
-    func getUserCardDetails(cardDetails: [Dictionary<String, String>]) {
+    func getUserCardDetails(cardDetails: [String : String]) {
         print("cardDetails : \(cardDetails)")
         self.cardDetailsDict = cardDetails
+        
     }
     
     //ShippingDetails Delegate
-    func getUserShippingDetails(shippingDetails: [Dictionary<String, String>]) {
+    func getUserShippingDetails(shippingDetails: [String : String]) {
         print("shippingDetails : \(shippingDetails)")
         self.shippingDetailsDict =  shippingDetails
     }

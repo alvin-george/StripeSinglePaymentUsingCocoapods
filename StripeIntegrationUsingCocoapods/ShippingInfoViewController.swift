@@ -10,7 +10,7 @@ import UIKit
 
 protocol ShippingDetailsDelegate {
     
-    func getUserShippingDetails(shippingDetails: [Dictionary<String,String>])
+    func getUserShippingDetails(shippingDetails: [String : String])
 }
 
 class ShippingInfoViewController: UIViewController,UITextFieldDelegate {
@@ -27,11 +27,8 @@ class ShippingInfoViewController: UIViewController,UITextFieldDelegate {
     @IBOutlet var mobilenumberTextField: UITextField!
     
     var shipping_delegate: ShippingDetailsDelegate!
-    var userShippingDetails = [Dictionary<String,String>]()
-    
-    
-    
-    
+    var userShippingDetails = [String:String]()
+        
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -52,60 +49,76 @@ class ShippingInfoViewController: UIViewController,UITextFieldDelegate {
         textField.resignFirstResponder();
         return true;
     }
+    func showAlert (title:String, messsage:String){
+        
+        let alert = UIAlertController(title: title, message: messsage, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
     
     @IBAction func backButtonClicked(_ sender: Any) {
         
-        if (nameTextField.text != nil){
-            userShippingDetails.append(["key":"name", "value": nameTextField.text!])
+        if (nameTextField.text != ""){
+            userShippingDetails["name"] = nameTextField.text!
         }
-        if (addressTextField.text != nil)
+        if (addressTextField.text != "")
         {
-            userShippingDetails.append(["key":"addresss", "value": addressTextField.text!])
-            
+            userShippingDetails["addresss"] = addressTextField.text!
         }
-        if (apertmentTextField.text != nil){
-            userShippingDetails.append(["key": "apartment", "value": apertmentTextField.text!])
-            
+        if (apertmentTextField.text != ""){
+            userShippingDetails["apartment"] = apertmentTextField.text!
         }
-        if (cityTextField.text != nil){
-            userShippingDetails.append(["key": "city", "value": cityTextField.text!])
-            
+        if (cityTextField.text != ""){
+            userShippingDetails["city"] = cityTextField.text!
         }
-        if (stateTextField.text != nil){
-            userShippingDetails.append(["key": "state", "value": stateTextField.text!])
-            
+        if (stateTextField.text != ""){
+            userShippingDetails["state"] = stateTextField.text!
         }
-        if (zipcodeTextField.text != nil){
-            userShippingDetails.append(["key": "zip_code", "value": zipcodeTextField.text!])
-            
+        if (zipcodeTextField.text != ""){
+            userShippingDetails["zip_code"] = zipcodeTextField.text!
         }
-        if (countryTextField.text != nil){
-            userShippingDetails.append(["key": "country", "value": countryTextField.text!])
-            
+        if (countryTextField.text != ""){
+            userShippingDetails["country"] = countryTextField.text!
         }
-        if (mobilenumberTextField.text != nil){
-            userShippingDetails.append(["key": "mobile_number", "value": mobilenumberTextField.text!])
-            
+        if (mobilenumberTextField.text != ""){
+            userShippingDetails["mobile_number"] = mobilenumberTextField.text!
         }
-        shipping_delegate.getUserShippingDetails(shippingDetails: userShippingDetails)
         
-        self.navigationController?.popViewController(animated: true)
+        //nil check
+        if (userShippingDetails.isEmpty){
+            showAlert(title: "Empty", messsage: "Please add relevant informations")
+        }
+        else {
+            
+            if (userShippingDetails.count < 8){
+                showAlert(title: "Not completed", messsage: "Please add missing informations")
+            }
+            else {
+                
+                print("card Data Dict : \(userShippingDetails)")
+                
+                //share delegate
+                shipping_delegate.getUserShippingDetails(shippingDetails: userShippingDetails)
+                self.navigationController?.popViewController(animated: true)
+            }
+        }
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
+        
+        override func didReceiveMemoryWarning() {
+            super.didReceiveMemoryWarning()
+            // Dispose of any resources that can be recreated.
+        }
+        
+        
+        /*
+         // MARK: - Navigation
+         
+         // In a storyboard-based application, you will often want to do a little preparation before navigation
+         override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+         // Get the new view controller using segue.destinationViewController.
+         // Pass the selected object to the new view controller.
+         }
+         */
+        
 }

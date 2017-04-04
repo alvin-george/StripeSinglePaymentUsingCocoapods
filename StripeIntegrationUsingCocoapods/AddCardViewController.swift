@@ -11,13 +11,14 @@ import Stripe
 
 //send back data using delegate
 protocol CardDetailsDelegate {
-    func getUserCardDetails(cardDetails: [Dictionary<String,String>])
+    func getUserCardDetails(cardDetails: [String:String])
 }
 
 class AddCardViewController: UIViewController, UITextFieldDelegate,STPPaymentCardTextFieldDelegate {
     
     @IBOutlet var emailTextField: UITextField!
-    
+    @IBOutlet var monthYearTextField: UITextField!
+    @IBOutlet var cvcTextField: UITextField!
     @IBOutlet var saveforUserSwitch: UISwitch!
     @IBOutlet var cardNumberView: UIView!
     @IBOutlet var mobileNumberTextField: UITextField!
@@ -25,7 +26,7 @@ class AddCardViewController: UIViewController, UITextFieldDelegate,STPPaymentCar
     var delegate: CardDetailsDelegate!
     
     var paymentTextField = STPPaymentCardTextField()
-    var userCardDetails = [Dictionary<String,String>]()
+    var usercardData = [String:String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,23 +66,54 @@ class AddCardViewController: UIViewController, UITextFieldDelegate,STPPaymentCar
         
     }
     @IBAction func backbuttonClicked(_ sender: Any) {
-        //share delegate
         
-        if (emailTextField.text != nil){
-            userCardDetails.append(["key":"email", "value": emailTextField.text!])
+        if (emailTextField.text != ""){
+            usercardData["email"] = emailTextField.text
         }
-        if (paymentTextField.cardNumber != nil)
+        if (paymentTextField.cardNumber != "")
         {
-            userCardDetails.append(["key":"card_number", "value": paymentTextField.cardNumber!])
+            if (paymentTextField.hasText){
+                usercardData["card_number"] = paymentTextField.cardNumber!
+            }
             
         }
-        if (mobileNumberTextField.text != nil){
-            userCardDetails.append(["key": "mobile_number", "value": mobileNumberTextField.text!])
+        if (mobileNumberTextField.text != ""){
+            usercardData["mobile_number"] = mobileNumberTextField.text!
         }
-
+        if (monthYearTextField.text != ""){
+            usercardData["month_year"] = monthYearTextField.text!
+        }
+        if (cvcTextField.text != ""){
+            usercardData["cvc"] = cvcTextField.text!
+        }
         
-        delegate?.getUserCardDetails(cardDetails: userCardDetails)
-        self.navigationController?.popViewController(animated: true)
+        if (usercardData.isEmpty){
+            showAlert(title: "Empty", messsage: "Please add relevant informations")
+        }
+        else {
+            
+            if (usercardData.count < 5){
+                showAlert(title: "Form not completed", messsage: "Please add missing informations")
+            }
+            else {
+                
+                print("card Data Dict : \(usercardData)")
+                
+                //share delegate
+                delegate?.getUserCardDetails(cardDetails: usercardData)
+                self.navigationController?.popViewController(animated: true)
+            }
+        }
+        
+        
+        
+        
+    }
+    func showAlert (title:String, messsage:String){
+        
+        let alert = UIAlertController(title: title, message: messsage, preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
     
     
